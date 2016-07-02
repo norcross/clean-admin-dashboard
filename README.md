@@ -23,7 +23,7 @@ Remove all the things from the admin dashboard in one fell swoop. No fuss, no me
 
 This section describes how to install the plugin and get it working.
 
-1. Upload `temporary-admin-user` to the `/wp-content/plugins/` directory.
+1. Upload `clean-admin-dashboard` to the `/wp-content/plugins/` directory.
 1. Activate the plugin through the 'Plugins' menu in WordPress.
 1. That's it.
 
