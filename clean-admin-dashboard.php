@@ -13,24 +13,24 @@
  */
 
 // Set my base for the plugin.
-if( ! defined( 'CLEAN_ADMIN_DASH_BASE ' ) ) {
+if ( ! defined( 'CLEAN_ADMIN_DASH_BASE' ) ) {
 	define( 'CLEAN_ADMIN_DASH_BASE', plugin_basename( __FILE__ ) );
 }
 
 // Set my directory for the plugin.
-if( ! defined( 'CLEAN_ADMIN_DASH_DIR' ) ) {
+if ( ! defined( 'CLEAN_ADMIN_DASH_DIR' ) ) {
 	define( 'CLEAN_ADMIN_DASH_DIR', plugin_dir_path( __FILE__ ) );
 }
 
 // Set my version for the plugin.
-if( ! defined( 'CLEAN_ADMIN_DASH_VER' ) ) {
+if ( ! defined( 'CLEAN_ADMIN_DASH_VER' ) ) {
 	define( 'CLEAN_ADMIN_DASH_VER', '0.0.1' );
 }
 
 /**
  * Set up and load our class.
  */
-class CleanAdminDash_Core
+class CleanAdminDash
 {
 
 	/**
@@ -50,7 +50,7 @@ class CleanAdminDash_Core
 	 */
 	public function dashboard_widgets() {
 
-		// Call the global
+		// Call the global $wp_meta_boxes.
 		global $wp_meta_boxes;
 
 		// Bail if we have no dashboard items to remove.
@@ -86,5 +86,5 @@ class CleanAdminDash_Core
 }
 
 // Instantiate our class.
-$CleanAdminDash_Core = new CleanAdminDash_Core();
-$CleanAdminDash_Core->init();
+$CleanAdminDash = new CleanAdminDash();
+$CleanAdminDash->init();

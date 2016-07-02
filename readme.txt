@@ -2,7 +2,7 @@
 === Clean Admin Dashboard ===
 Contributors: norcross
 Donate link: https://andrewnorcross.com/donate
-Tags: user accounts, support
+Tags: dashboard
 Requires at least: 4.0
 Tested up to: 4.6
 Stable tag: 0.0.1
