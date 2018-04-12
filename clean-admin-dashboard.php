@@ -13,6 +13,18 @@
  */
 
 /**
+ * Remove all dashboard widgets.
+ *
+ * @global $wp_meta_boxes
+ */
+add_action( 'wp_dashboard_setup', function () {
+	global $wp_meta_boxes;
+
+	// Clear out the dashboard meta boxes array.
+	$wp_meta_boxes['dashboard'] = array();
+}, 999 );
+
+/**
  * Set up and load our class.
  */
 class CleanAdminDash
@@ -24,34 +36,7 @@ class CleanAdminDash
 	 * @return void
 	 */
 	public function init() {
-		add_action( 'wp_dashboard_setup',   array( $this, 'dashboard_widgets'   ),  999     );
 		add_action( 'admin_head',           array( $this, 'dashboard_css'       )           );
-	}
-
-	/**
-	 * Remove all the dashboard widgets
-	 *
-	 * @return null
-	 */
-	public function dashboard_widgets() {
-
-		// Call the global $wp_meta_boxes.
-		global $wp_meta_boxes;
-
-		// Bail if we have no dashboard items to remove.
-		if ( empty( $wp_meta_boxes['dashboard'] ) ) {
-			return;
-		}
-
-		// Remove all default normal items.
-		if ( isset( $wp_meta_boxes['dashboard']['normal'] ) ) {
-			unset( $wp_meta_boxes['dashboard']['normal'] );
-		}
-
-		// Remove all default side items.
-		if ( isset( $wp_meta_boxes['dashboard']['side'] ) ) {
-			unset( $wp_meta_boxes['dashboard']['side'] );
-		}
 	}
 
 	/**
