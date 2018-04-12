@@ -26,14 +26,15 @@ add_action( 'wp_dashboard_setup', function () {
 
 /**
  * Add some custom CSS to the admin dashboard to clean up the presentation.
+ *
+ * This will hide the "Drag Boxes Here" message, as there are no boxes to drag.
  */
-add_action( 'admin_head', function () {
+add_action( 'admin_print_styles-index.php', function () {
 ?>
 
-	<style type="text/css">
-		#dashboard-widgets-wrap .metabox-holder .postbox-container .empty-container { border: none; }
-		#dashboard-widgets-wrap .metabox-holder .postbox-container .empty-container:after { content: ""; }
-	</style>
+    <style type="text/css">
+        #dashboard-widgets-wrap .empty-container { display: none; }
+    </style>
 
 <?php
 } );
