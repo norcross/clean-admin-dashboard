@@ -12,21 +12,6 @@
  * GitHub Plugin URI: https://github.com/norcross/clean-admin-dashboard
  */
 
-// Set my base for the plugin.
-if ( ! defined( 'CLEAN_ADMIN_DASH_BASE' ) ) {
-	define( 'CLEAN_ADMIN_DASH_BASE', plugin_basename( __FILE__ ) );
-}
-
-// Set my directory for the plugin.
-if ( ! defined( 'CLEAN_ADMIN_DASH_DIR' ) ) {
-	define( 'CLEAN_ADMIN_DASH_DIR', plugin_dir_path( __FILE__ ) );
-}
-
-// Set my version for the plugin.
-if ( ! defined( 'CLEAN_ADMIN_DASH_VER' ) ) {
-	define( 'CLEAN_ADMIN_DASH_VER', '0.0.1' );
-}
-
 /**
  * Set up and load our class.
  */
