@@ -12,79 +12,29 @@
  * GitHub Plugin URI: https://github.com/norcross/clean-admin-dashboard
  */
 
-// Set my base for the plugin.
-if ( ! defined( 'CLEAN_ADMIN_DASH_BASE' ) ) {
-	define( 'CLEAN_ADMIN_DASH_BASE', plugin_basename( __FILE__ ) );
-}
+/**
+ * Remove all dashboard widgets.
+ *
+ * @global $wp_meta_boxes
+ */
+add_action( 'wp_dashboard_setup', function () {
+	global $wp_meta_boxes;
 
-// Set my directory for the plugin.
-if ( ! defined( 'CLEAN_ADMIN_DASH_DIR' ) ) {
-	define( 'CLEAN_ADMIN_DASH_DIR', plugin_dir_path( __FILE__ ) );
-}
-
-// Set my version for the plugin.
-if ( ! defined( 'CLEAN_ADMIN_DASH_VER' ) ) {
-	define( 'CLEAN_ADMIN_DASH_VER', '0.0.1' );
-}
+	// Clear out the dashboard meta boxes array.
+	$wp_meta_boxes['dashboard'] = array();
+}, 999 );
 
 /**
- * Set up and load our class.
+ * Add some custom CSS to the admin dashboard to clean up the presentation.
+ *
+ * This will hide the "Drag Boxes Here" message, as there are no boxes to drag.
  */
-class CleanAdminDash
-{
+add_action( 'admin_print_styles-index.php', function () {
+?>
 
-	/**
-	 * Load our hooks and filters.
-	 *
-	 * @return void
-	 */
-	public function init() {
-		add_action( 'wp_dashboard_setup',   array( $this, 'dashboard_widgets'   ),  999     );
-		add_action( 'admin_head',           array( $this, 'dashboard_css'       )           );
-	}
+    <style type="text/css">
+        #dashboard-widgets-wrap .empty-container { display: none; }
+    </style>
 
-	/**
-	 * Remove all the dashboard widgets
-	 *
-	 * @return null
-	 */
-	public function dashboard_widgets() {
-
-		// Call the global $wp_meta_boxes.
-		global $wp_meta_boxes;
-
-		// Bail if we have no dashboard items to remove.
-		if ( empty( $wp_meta_boxes['dashboard'] ) ) {
-			return;
-		}
-
-		// Remove all default normal items.
-		if ( isset( $wp_meta_boxes['dashboard']['normal'] ) ) {
-			unset( $wp_meta_boxes['dashboard']['normal'] );
-		}
-
-		// Remove all default side items.
-		if ( isset( $wp_meta_boxes['dashboard']['side'] ) ) {
-			unset( $wp_meta_boxes['dashboard']['side'] );
-		}
-	}
-
-	/**
-	 * Load some bits of CSS to remove the remnants of the dashboard.
-	 *
-	 * @return void
-	 */
-	public function dashboard_css() {
-
-		echo '<style type="text/css">' . "\n";
-			echo '#dashboard-widgets-wrap .metabox-holder .postbox-container .empty-container { border: 0 none; }' . "\n";
-			echo '#dashboard-widgets-wrap .metabox-holder .postbox-container .empty-container::after { content: ""; }' . "\n";
-		echo '</style>';
-	}
-
-	// End the class.
-}
-
-// Instantiate our class.
-$CleanAdminDash = new CleanAdminDash();
-$CleanAdminDash->init();
+<?php
+} );
