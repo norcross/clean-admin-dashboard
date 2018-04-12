@@ -25,36 +25,15 @@ add_action( 'wp_dashboard_setup', function () {
 }, 999 );
 
 /**
- * Set up and load our class.
+ * Add some custom CSS to the admin dashboard to clean up the presentation.
  */
-class CleanAdminDash
-{
+add_action( 'admin_head', function () {
+?>
 
-	/**
-	 * Load our hooks and filters.
-	 *
-	 * @return void
-	 */
-	public function init() {
-		add_action( 'admin_head',           array( $this, 'dashboard_css'       )           );
-	}
+	<style type="text/css">
+		#dashboard-widgets-wrap .metabox-holder .postbox-container .empty-container { border: none; }
+		#dashboard-widgets-wrap .metabox-holder .postbox-container .empty-container:after { content: ""; }
+	</style>
 
-	/**
-	 * Load some bits of CSS to remove the remnants of the dashboard.
-	 *
-	 * @return void
-	 */
-	public function dashboard_css() {
-
-		echo '<style type="text/css">' . "\n";
-			echo '#dashboard-widgets-wrap .metabox-holder .postbox-container .empty-container { border: 0 none; }' . "\n";
-			echo '#dashboard-widgets-wrap .metabox-holder .postbox-container .empty-container::after { content: ""; }' . "\n";
-		echo '</style>';
-	}
-
-	// End the class.
-}
-
-// Instantiate our class.
-$CleanAdminDash = new CleanAdminDash();
-$CleanAdminDash->init();
+<?php
+} );
