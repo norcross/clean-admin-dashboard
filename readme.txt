@@ -4,6 +4,7 @@ Contributors: norcross
 Donate link: https://andrewnorcross.com/donate
 Tags: dashboard
 Requires at least: 4.0
+Requires PHP: 5.3
 Tested up to: 4.6
 Stable tag: 0.0.1
 
